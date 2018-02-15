@@ -1,0 +1,47 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="survey-params">
+  <script>
+    class SurveyParams extends Polymer.Element {
+      static get is() {
+        return 'survey-params'
+      }
+
+      static get properties() {
+        return {
+          name: {
+            type: String,
+            value: '',
+          },
+          title: {
+            type: String,
+            value: '',
+          },
+          required: {
+            type: Boolean,
+            value: false,
+          },
+          value: {
+            type: String,
+            notify: true,
+            reflectToAttribute: true,
+          },
+          options: {
+            type: Array,
+            value: [],
+          },
+          visibleIf: {
+            type: String,
+            value: '',
+          },
+          enableIf: {
+            type: String,
+            value: '',
+          },
+        }
+      }
+    }
+
+    window.customElements.define(SurveyParams.is, SurveyParams)
+  </script>
+</dom-module>
