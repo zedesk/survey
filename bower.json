@@ -1,0 +1,44 @@
+{
+  "name": "survey",
+  "description": "survey webcomponents",
+  "main": [
+    "survey-text.html",
+    "survey-form.html",
+    "survey-page.html",
+    "survey-checkboxes.html",
+    "survey-textarea.html",
+    "survey-radiogroup,html"
+  ],
+  "authors": [
+    "zeDesk"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "polymer",
+    "web-components",
+    "survey",
+    "quiz"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^2.5.0",
+    "paper-checkbox": "PolymerElements/paper-checkbox#^2.0.2",
+    "paper-radio-group": "PolymerElements/paper-radio-group#^2.1.0",
+    "iron-input": "PolymerElements/iron-input#^2.0.1",
+    "paper-button": "PolymerElements/paper-button#^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.0.1",
+    "iron-icon": "PolymerElements/iron-icon#^2.0.1"
+  },
+  "devDependencies": {
+    "web-component-tester": "^6.5.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^3.0.1",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0"
+  }
+}
