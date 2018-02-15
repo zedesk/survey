@@ -1,0 +1,78 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="../paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+<link rel="import" href="./survey-params.html">
+
+<dom-module id="survey-radiogroup">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font: inherit;
+      }
+
+      .title {
+        font-family: Roboto;
+        font-size: 20px;
+      }
+
+      .line {
+        height: 3.5em;
+        margin: 0 16px;
+        display: flex;
+        align-items: center;
+        padding: 0;
+      }
+
+      paper-radio-group {
+        display: block;
+      }
+
+    </style>
+
+    <div class="title">[[title]]</div>
+    <paper-radio-group selected={{value}}>
+      <dom-repeat items=[[_choices]]>
+        <template strip-whitespace>
+          <paper-radio-button class="line" name=[[item.label]]>[[item.label]]</paper-radio-button>
+        </template>
+      </dom-repeat>
+    </paper-radio-group>
+  </template>
+
+  <script>
+    /**
+     * \<survey-radiogroup\>
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     * @demo /demo/survey-radiogroup.html
+     */
+    class SurveyRadioGroup extends SurveyParams {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'survey-radiogroup'
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          value: {
+            type: String,
+            notify: true,
+            reflectToAttribute: true,
+          },
+        }
+      }
+    }
+
+    window.customElements.define(SurveyRadioGroup.is, SurveyRadioGroup)
+  </script>
+</dom-module>
