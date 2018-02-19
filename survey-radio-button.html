@@ -1,0 +1,43 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../paper-radio-button/paper-radio-button.html">
+
+<dom-module id="survey-radio-button">
+  <template>
+    <paper-radio-button id="radio" name=[[name]] checked$={{checked}} >
+      <slot></slot>
+    </paper-radio-button>
+  </template>
+  <script>
+    class SurveyRadioButton extends Polymer.Element {
+      static get is() {
+        return 'survey-radio-button'
+      }
+      static get properties() {
+        return {
+          name: {
+            type: String,
+            value: '',
+          },
+          checked: {
+            type: Boolean,
+            value: false,
+            notify: true,
+            reflectToAttribute: true,
+          },
+        }
+      }
+
+      connectedCallback() {
+        super.connectedCallback()
+        this.addEventListener('click', () => {
+          this.checked = !this.checked
+        })
+      }
+
+      _checkedChanged(evt) {
+        this.checked = evt.detail.value
+      }
+    }
+    window.customElements.define(SurveyRadioButton.is, SurveyRadioButton)
+  </script>
+</dom-module>

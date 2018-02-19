@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <title>tsante-tiler demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../survey-radio-button.html">
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <demo-snippet>
+      <template>
+        <survey-radio-button name="1" checked>Choix 1</survey-radio-button>
+        <script>
+          const elt = document.querySelector('survey-radio-button')
+          elt.addEventListener('checked-changed', (evt) => {
+            console.log(evt.detail.value)
+          })
+        </script>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "MockInteractions": true,
+    "fixture": true,
+    "assert": true
+  }
+}

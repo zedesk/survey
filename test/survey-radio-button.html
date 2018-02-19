@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>paper-radio-button basic tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+
+  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="../survey-radio-button.html">
+</head>
+<body>
+  <custom-style>
+  </custom-style>
+
+  <test-fixture id="NoLabel">
+    <template>
+      <survey-radio-button></survey-radio-button>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="WithLabel">
+    <template>
+      <survey-radio-button checked>item 1</survey-radio-button>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="checked">
+    <template>
+      <survey-radio-button checked>item 1</survey-radio-button>
+    </template>
+  </test-fixture>
+
+  <script>
+    suite('survey-radio-button', () => {
+      let r1
+
+      setup(() => {
+        r1 = fixture('NoLabel')
+      })
+
+      test('init', (done) => {
+        assert.isFalse(r1.checked)
+        done()
+      })
+
+      test('check button via click', (done) => {
+        r1.addEventListener('click', () => {
+          assert.isTrue(r1.checked)
+          done()
+        })
+        MockInteractions.tap(r1)
+      })
+    })
+
+    suite('survey-radio-button checked', () => {
+      let r1
+
+      setup(() => {
+        r1 = fixture('checked')
+      })
+
+      test('init', (done) => {
+        assert.isTrue(r1.checked)
+        done()
+      })
+
+      test('check button via click', (done) => {
+        r1.addEventListener('click', () => {
+          assert.isFalse(r1.checked)
+          done()
+        })
+        MockInteractions.tap(r1)
+      })
+    })
+  </script>
+</body>
+</html>
