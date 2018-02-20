@@ -1,8 +1,8 @@
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="../paper-radio-group/paper-radio-group.html">
-<link rel="import" href="../paper-radio-button/paper-radio-button.html">
-<link rel="import" href="./survey-params.html">
+<link rel="import" href="../polymer/lib/utils/render-status.html">
+<link rel="import" href="../polymer/lib/utils/flattened-nodes-observer.html">
+<link rel="import" href="survey-radiogroup.html">
+<link rel="import" href="survey-radio-button.html">
 
 <dom-module id="survey-radiogroup">
   <template>
@@ -32,13 +32,7 @@
     </style>
 
     <div class="title">[[title]]</div>
-    <paper-radio-group selected={{value}}>
-      <dom-repeat items=[[_choices]]>
-        <template strip-whitespace>
-          <paper-radio-button class="line" name=[[item.label]]>[[item.label]]</paper-radio-button>
-        </template>
-      </dom-repeat>
-    </paper-radio-group>
+      <slot id="slot"></slot>
   </template>
 
   <script>
@@ -51,7 +45,7 @@
      * @extends {Polymer.Element}
      * @demo /demo/survey-radiogroup.html
      */
-    class SurveyRadioGroup extends SurveyParams {
+    class SurveyRadioGroup extends Polymer.Element {
       /**
        * String providing the tag name to register the element under.
        */
@@ -68,8 +62,26 @@
             type: String,
             notify: true,
             reflectToAttribute: true,
+            observer: '_valueChanged',
           },
         }
+      }
+
+      connectedCallback() {
+        super.connectedCallback()
+        Polymer.RenderStatus.afterNextRender(this, () => {
+          this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
+            this._processNode()
+          })
+        })
+      }
+
+      _valueChanged(newValue) {
+        console.log(`value change : ${newValue}`)
+      }
+
+      _processNode() {
+        debugger // eslint-disable-line
       }
     }
 

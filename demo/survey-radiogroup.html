@@ -1,0 +1,44 @@
+<html>
+
+<head>
+  <title>tsante-tiler demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../survey-radiogroup.html">
+  <link rel="import" href="../survey-radio-button.html">
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <demo-snippet>
+      <template>
+          <custom-style>
+            <style>
+            survey-radiogroup {
+              display: flex;
+              flex-direction: column;
+            }
+            survey-radio-button {
+              display: flex;
+              height: 30px;
+              align-items: center;
+            }
+            </style>
+          </custom-style>
+        <survey-radiogroup 
+          name='Q1'
+          title='Some text'
+          value='1'>
+          <survey-radio-button name="1">Choix 1</survey-radio-button>
+          <survey-radio-button name="2">Choix 2</survey-radio-button>
+          <survey-radio-button name="3">Choix 3</survey-radio-button>
+        </survey-radiogroup>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+</html>
