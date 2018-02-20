@@ -15,7 +15,10 @@
   <div class="vertical-section-container centered">
     <demo-snippet>
       <template>
-        <survey-radio-button name="1" checked>Choix 1</survey-radio-button>
+        <survey-radio-button name="1" checked>
+          <div slot='html'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima autem id odio nemo aliquam at itaque distinctio quod voluptate, debitis iusto perspiciatis aperiam incidunt? Ipsum voluptates tempora nulla praesentium voluptas!</div>
+          Choix 1
+        </survey-radio-button>
         <script>
           const elt = document.querySelector('survey-radio-button')
           elt.addEventListener('checked-changed', (evt) => {

@@ -3,6 +3,7 @@
 
 <dom-module id="survey-radio-button">
   <template>
+    <slot name='html'></slot>
     <paper-radio-button id="radio" name=[[name]] checked$={{checked}} >
       <slot></slot>
     </paper-radio-button>
