@@ -3,22 +3,39 @@
 
 <dom-module id="survey-radio-button">
   <template>
-    <slot name='html'></slot>
+    <slot name='html' id='html'></slot>
     <paper-radio-button id="radio" name=[[name]] checked$={{checked}} >
-      <slot></slot>
+      <slot id='label'></slot>
     </paper-radio-button>
   </template>
   <script>
+    /**
+     * `survey-radio-button`
+     *
+     * @summary A radio button.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     * @demo demo/survey-radio-button.html
+     */
     class SurveyRadioButton extends Polymer.Element {
       static get is() {
         return 'survey-radio-button'
       }
       static get properties() {
         return {
+          /**
+           * name of the element
+           * will be used by a parent element (survey-radiogroup)
+           */
           name: {
             type: String,
             value: '',
           },
+
+          /**
+           * boolean indicates that the element is checked
+           */
           checked: {
             type: Boolean,
             value: false,
@@ -30,9 +47,7 @@
 
       connectedCallback() {
         super.connectedCallback()
-        this.addEventListener('click', () => {
-          this.checked = !this.checked
-        })
+        this.addEventListener('click', () => this.checked = !this.checked)
       }
 
       _checkedChanged(evt) {
