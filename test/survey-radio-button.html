@@ -22,15 +22,20 @@
     </template>
   </test-fixture>
 
-  <test-fixture id="WithLabel">
+  <test-fixture id="checked">
     <template>
       <survey-radio-button checked>item 1</survey-radio-button>
     </template>
   </test-fixture>
 
-  <test-fixture id="checked">
+  <test-fixture id="WithHtml">
     <template>
-      <survey-radio-button checked>item 1</survey-radio-button>
+      <survey-radio-button>
+        item 1
+        <div slot='html'>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad quasi fugit explicabo assumenda alias consequuntur odit voluptates sequi necessitatibus, unde possimus rerum dolorum accusantium exercitationem nostrum? Voluptatum illo molestiae laboriosam!
+        </div>
+      </survey-radio-button>
     </template>
   </test-fixture>
 
@@ -74,6 +79,34 @@
           done()
         })
         MockInteractions.tap(r1)
+      })
+    })
+
+    suite('survey-radio-button html', () => {
+      let r1
+
+      setup(() => {
+        r1 = fixture('WithHtml')
+      })
+
+      test('test label', (done) => {
+        flush(() => {
+          const nodes = r1.$.label.assignedNodes()
+          let text = ''
+          nodes.forEach(node => text += node.textContent.trim())
+          assert.equal(text, 'item 1')
+          done()
+        })
+      })
+
+      test('test html', (done) => {
+        flush(() => {
+          const nodes = r1.$.html.assignedNodes()
+          let text = ''
+          nodes.forEach(node => text += node.textContent.trim())
+          assert.isTrue(text.startsWith('Lorem ipsum dolor sit'))
+          done()
+        })
       })
     })
   </script>
