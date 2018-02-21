@@ -58,11 +58,11 @@
        */
       static get properties() {
         return {
-          value: {
+          selected: {
             type: String,
             notify: true,
             reflectToAttribute: true,
-            observer: '_valueChanged',
+            observer: '_selectedChanged',
           },
         }
       }
@@ -70,18 +70,23 @@
       connectedCallback() {
         super.connectedCallback()
         Polymer.RenderStatus.afterNextRender(this, () => {
+          this.addEventListener('click', this._clickDetect)
           this._observer = new Polymer.FlattenedNodesObserver(this.$.slot, (info) => {
-            this._processNode()
+            this._selectedChanged()
           })
         })
       }
 
-      _valueChanged(newValue) {
-        console.log(`value change : ${newValue}`)
+      _selectedChanged(newValue) {
+        const radios = Array.from(this.querySelectorAll('survey-radio-button'))
+        radios.forEach(radio => radio.checked = (radio.name === this.selected))
       }
 
-      _processNode() {
-        debugger // eslint-disable-line
+      _clickDetect(evt) {
+        const target = evt.target
+        this.selected = target.name
+        // ensure that the selected target is checked
+        target.checked = true
       }
     }
 
